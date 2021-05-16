@@ -24,6 +24,7 @@ export default {
   },
   created() {
     this.redirectURL = this.$route.query.redirectURL || '/'
+    console.log('请稍等，正在重新进行身份认证......')
     this.refreshLogin()
   },
   methods: {
@@ -31,6 +32,7 @@ export default {
     refreshLogin() {
       // TODO
       this.$store.dispatch('SendRefreshToken').then(()=> {
+        this.message = '刷新成功，重写向回应用'
         // 刷新成功重定向
         window.location.href = this.redirectURL
       }).catch(error =>{
